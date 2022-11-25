@@ -36,6 +36,44 @@ class Grafo:
                 if i<=j:
                     print(i,j)
             print("--------")
+            
+    def gradoE (self, nodo):
+        cont = 0
+        j = self.buscar(nodo)
+        for i in range(4):
+            if self.__matriz[i][j] != 0:
+                cont += 1
+        if cont == 0:
+            return cont
+        else:
+            return cont
+
+    def gradoS (self, nodo):
+        cont = 0
+        i = self.buscar(nodo)
+        for j in range(4):
+            if self.__matriz[i][j] != 0:
+                cont += 1
+        if cont == 0:
+            return cont
+        else:
+            return cont
+
+    def fuente (self):
+        for i in range(4):
+            s = self.gradoS(self.__vertices[i])
+            e = self.gradoE(self.__vertices[i])
+            if e == 0 and s >= 1:
+                print("nodo fuente")
+                print("vertice ",self.__vertices[i])
+
+    def sumidero (self):
+        for i in range(4):
+            s = self.gradoS(self.__vertices[i])
+            e = self.gradoE(self.__vertices[i])
+            if e >= 1 and s == 0:
+                print("nodo sumidero")
+                print("vertice ",self.__vertices[i])
 if __name__=='__main__':
     grafo=Grafo(["A","B","C"])
     grafo.Mostrar()
